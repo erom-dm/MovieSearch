@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import Header from './components/Header';
 import Main from './components/MainWindow';
 import './App.css';
-import FetchData from './util/FetchData';
 
 class App extends Component {
   state = {
