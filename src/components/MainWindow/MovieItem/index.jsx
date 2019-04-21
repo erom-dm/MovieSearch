@@ -2,16 +2,21 @@ import React from 'react';
 import './movie-item.scss';
 import PropTypes from 'prop-types';
 
-const MovieItem = (props) => {
-  const {poster_path, title, vote_average, original_language, overview} = props.movie;
-  const posterURL = `https://image.tmdb.org/t/p/w150${poster_path}`;
+const MovieItem = ({ movie }) => {
+  const {
+    poster_path: posterPath, title, vote_average: rating, original_language: language, overview,
+  } = movie;
+  const posterURL = `https://image.tmdb.org/t/p/w200${posterPath}`;
   return (
     <li className="movie-list__movie-item">
-      <img src={posterURL} alt=" " />
-      <div className="movie-list__title">{title}</div>
-      <div className="movie-list__score">{vote_average}</div>
-      <div className="movie-list__language">{original_language}</div>
-      <div className="movie-list__description">{overview}</div>
+      <img className="movie-list__poster" src={posterURL} alt=" " />
+      <div className="movie-list__text-container">
+        <div className="movie-list__title-container">
+          <div className="movie-list__title">{`${title}`}</div>
+          <div className="movie-list__score">{`Rating: ${rating}  Language: ${language}`}</div>
+        </div>
+        <div className="movie-list__description">{overview}</div>
+      </div>
     </li>
   );
 };

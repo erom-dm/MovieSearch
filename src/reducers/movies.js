@@ -1,12 +1,12 @@
 import { DISCOVER } from '../actions/movies/actions';
 
-const movieReducer = (state = {}, action) => {
+const movieReducer = (state = [], action) => {
   switch (action.type) {
     case DISCOVER:
-      return {
+      return [
         ...state,
         ...action.payload,
-      };
+      ];
     default:
       return state;
   }
