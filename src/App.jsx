@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Header from './components/Header'
+import Header from './components/Header';
 import './App.css';
 import FetchData from './util/FetchData';
 
