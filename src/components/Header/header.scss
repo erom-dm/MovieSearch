@@ -1,0 +1,27 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  background-color: #ff552b;
+  height: 50px;
+  width: 100%;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+
+  &__logo{
+    width: 150px;
+    background-color: #1a1a1a;
+    color: #fff;
+    text-align: center;
+  }
+
+  &__search-bar{
+    width: 300px;
+    background-color: #fff;
+  }
+
+  &__search-menu{
+    width: 100px;
+    background-color: #ffd1c4;
+  }
+
+}

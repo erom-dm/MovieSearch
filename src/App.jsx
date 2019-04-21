@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import Header from './components/Header'
 import './App.css';
 import FetchData from './util/FetchData';
 
@@ -12,9 +13,11 @@ class App extends Component {
   }
 
   render() {
-    const { movies } = this.state;
     return (
-      <div> hey </div>
+      <Fragment>
+        <Header />
+        <div> hey </div>
+      </Fragment>
     );
   }
 }
