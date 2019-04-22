@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import SearchBar from './SearchBar';
 import { discoverMovies } from '../../actions/movies/operations';
 import './header.scss';
 
 class Header extends Component {
-  testQuery = () => {
+  testQuery = (year) => {
     const { discover } = this.props;
-    discover(2018);
+    discover(year);
   };
 
   render() {
     return (
       <div className="header">
         <div className="header__logo">My App</div>
-        <div className="header__search-bar">
-          <input />
-          <button type="button" onClick={this.testQuery}>search</button>
+        <div className="header__search-container">
+          <SearchBar query={this.testQuery} />
         </div>
         <div className="header__search-menu" />
       </div>
@@ -29,7 +29,6 @@ Header.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  // movies: state.movies,
 });
 
 const mapDispatchToProps = dispatch => ({

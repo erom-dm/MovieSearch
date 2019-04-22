@@ -7,7 +7,7 @@ import './main-window.scss';
 class MainWindow extends Component {
   render() {
     const { movies } = this.props;
-    const movieItems = movies.map((movie) => <MovieItem movie={movie} key={movie.id} />);
+    const movieItems = movies.map(movie => <MovieItem movie={movie} key={movie.id} />);
     return (
       <div className="main-container">
         <ul className="movie-list">

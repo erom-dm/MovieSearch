@@ -14,9 +14,11 @@
     text-align: center;
   }
 
-  &__search-bar{
-    width: 300px;
-    background-color: #fff;
+  &__search-container{
+    display: flex;
+    align-items: center;
+    width: 240px;
+    background-color: #ff552b;
   }
 
   &__search-menu{
