@@ -20,7 +20,10 @@ class Header extends Component {
           <SearchBar query={this.testQuery} />
           <Dropdown />
         </div>
-        <div className="header__search-menu" />
+        <div className="header__display-mode">
+          <button className="header__switch" type="button">small</button>
+          <button className="header__switch" type="button">large</button>
+        </div>
       </div>
     );
   }
