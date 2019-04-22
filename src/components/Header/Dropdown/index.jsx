@@ -20,6 +20,10 @@ class Dropdown extends Component {
     });
   };
 
+  handleListItemClick = (value) => {
+    this.setState({ searchType: value });
+  };
+
   render() {
     const { displayMenu, searchType } = this.state;
     return (
@@ -29,11 +33,21 @@ class Dropdown extends Component {
         </div>
         {displayMenu ? (
           <ul className="dropdown__list">
-            <li className="dropdown__item">Title</li>
-            <li className="dropdown__item">Year</li>
-            <li className="dropdown__item">Genre</li>
-            <li className="dropdown__item">Cast</li>
-            <li className="dropdown__item">Director</li>
+            <li className="dropdown__item">
+              <button onClick={this.handleListItemClick.bind(this, 'Title')}>Title</button>
+            </li>
+            <li className="dropdown__item">
+              <button onClick={this.handleListItemClick.bind(this, 'Year')}>Year</button>
+            </li>
+            <li className="dropdown__item">
+              <button onClick={this.handleListItemClick.bind(this, 'Genre')}>Genre</button>
+            </li>
+            <li className="dropdown__item">
+              <button onClick={this.handleListItemClick.bind(this, 'Cast')}>Cast</button>
+            </li>
+            <li className="dropdown__item">
+              <button onClick={this.handleListItemClick.bind(this, 'Director')}>Director</button>
+            </li>
           </ul>
         ) : (null)}
       </div>
