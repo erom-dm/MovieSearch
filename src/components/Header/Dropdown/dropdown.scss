@@ -1,23 +1,31 @@
 @import '../../../style/variables';
 
 .dropdown{
+  display: flex;
+  align-items: center;
   position: relative;
-  display: inline-block;
+  align-self: stretch;
+
 
   &__button{
-    width:178px;
-    height:18px;
-    background-color:#ff3232;
-    padding:12px;
-    border-radius:5px;
-    font-weight:bold;
-    color:white;
+    @include button-reset;
+    width: 200px;
+    background-color: #ff3232;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    flex-grow: 1;
+
+    &:focus{
+      outline: none;
+    }
 
     &:before{
-      content:"";
-      position:absolute;
-      width:0;
-      height:0;
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
       border: 10px solid;
       border-color: white transparent transparent transparent;
       right:6px;

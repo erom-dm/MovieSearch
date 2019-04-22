@@ -28,9 +28,9 @@ class Dropdown extends Component {
     const { displayMenu, searchType } = this.state;
     return (
       <div className="dropdown">
-        <div className="dropdown__button" onClick={this.showDropdownMenu}>
+        <button type="button" className="dropdown__button" onClick={this.showDropdownMenu}>
           {`By: ${searchType}`}
-        </div>
+        </button>
         {displayMenu ? (
           <ul className="dropdown__list">
             <li className="dropdown__item">
