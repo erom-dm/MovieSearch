@@ -1,3 +1,5 @@
+@import '../../../style/variables';
+
 .dropdown{
   position: relative;
   display: inline-block;
@@ -5,7 +7,7 @@
   &__button{
     width:178px;
     height:18px;
-    background-color:#ff3232 ;
+    background-color:#ff3232;
     padding:12px;
     border-radius:5px;
     font-weight:bold;
@@ -30,9 +32,9 @@
     top:45px;
     right:0;
     width: 200px;
-    background-color: white;
     font-weight:bold;
     position: absolute;
+    background-color: #fff;
 
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
@@ -52,12 +54,20 @@
     }
 
     button{
-      padding: 0;
-      border: none;
-      font: inherit;
-      color: inherit;
-      background-color: transparent;
-      cursor: pointer;
+      @include button-reset;
+      display: inline-block;
+      flex-grow: 1;
+      text-align: left;
+      padding: 5px 13px ;
+      border: solid 1px transparent;
+      border-radius: 4px;
+      text-decoration: none;
+
+      &:hover{
+        color: #ff3232;
+        border-color: currentColor;
+        background-color: #dcdcdc;
+      }
     }
   }
 }

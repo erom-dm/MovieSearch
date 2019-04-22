@@ -34,19 +34,19 @@ class Dropdown extends Component {
         {displayMenu ? (
           <ul className="dropdown__list">
             <li className="dropdown__item">
-              <button onClick={this.handleListItemClick.bind(this, 'Title')}>Title</button>
+              <button type="button" onClick={this.handleListItemClick.bind(this, 'Title')}>Title</button>
             </li>
             <li className="dropdown__item">
-              <button onClick={this.handleListItemClick.bind(this, 'Year')}>Year</button>
+              <button type="button" onClick={this.handleListItemClick.bind(this, 'Year')}>Year</button>
             </li>
             <li className="dropdown__item">
-              <button onClick={this.handleListItemClick.bind(this, 'Genre')}>Genre</button>
+              <button type="button" onClick={this.handleListItemClick.bind(this, 'Genre')}>Genre</button>
             </li>
             <li className="dropdown__item">
-              <button onClick={this.handleListItemClick.bind(this, 'Cast')}>Cast</button>
+              <button type="button" onClick={this.handleListItemClick.bind(this, 'Cast')}>Cast</button>
             </li>
             <li className="dropdown__item">
-              <button onClick={this.handleListItemClick.bind(this, 'Director')}>Director</button>
+              <button type="button" onClick={this.handleListItemClick.bind(this, 'Director')}>Director</button>
             </li>
           </ul>
         ) : (null)}
