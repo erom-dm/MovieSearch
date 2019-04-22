@@ -32,7 +32,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  discover: () => dispatch(discoverMovies()),
+  discover: (year) => dispatch(discoverMovies(year)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
