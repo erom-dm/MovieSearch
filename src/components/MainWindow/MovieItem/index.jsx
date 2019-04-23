@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 
 const MovieItem = ({ movie }) => {
   const {
-    poster_path: posterPath, title, vote_average: rating, original_language: language, overview,
+    poster_path: posterPath, title, vote_average: rating,
+    original_language: language, overview, release_date: rYear,
   } = movie;
+  const year = rYear.substr(0, 4);
   const posterURL = `https://image.tmdb.org/t/p/w200${posterPath}`;
   return (
     <li className="movie-list__movie-item">
@@ -13,7 +15,7 @@ const MovieItem = ({ movie }) => {
       <div className="movie-list__text-container">
         <div className="movie-list__title-container">
           <div className="movie-list__title">{`${title}`}</div>
-          <div className="movie-list__score">{`Rating: ${rating}  Language: ${language}`}</div>
+          <div className="movie-list__score">{`Rating: ${rating}  Language: ${language} Year: ${year}`}</div>
         </div>
         <div className="movie-list__description">{overview}</div>
       </div>
