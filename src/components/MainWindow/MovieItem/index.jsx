@@ -27,7 +27,7 @@ MovieItem.propTypes = {
   movie: PropTypes.shape({
     poster_path: PropTypes.string,
     title: PropTypes.string,
-    vote_average: PropTypes.number,
+    vote_average: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     original_language: PropTypes.string,
     overview: PropTypes.string,
   }).isRequired,
