@@ -18,7 +18,7 @@ class Header extends Component {
         <div className="header__logo">My App</div>
         <div className="header__search-container">
           <SearchBar query={this.searchQuery} />
-          <Dropdown menuType="Search" items={['Title', 'Year', 'Genre', 'People']} />
+          <Dropdown menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />
           <Dropdown menuType="Sort" items={['Rating', 'Popularity', 'Release year']} />
         </div>
         <div className="header__display-mode">

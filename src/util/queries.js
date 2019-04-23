@@ -1,7 +1,7 @@
 const apiKey = '5874acfd11651a28c55771624f7021f4';
 const queryConst = 'https://api.themoviedb.org/3';
 
-export const discover = (query, sortBy, searchBy) => {
+export const discover = (value, sortBy, searchBy) => {
   let sort;
   let search;
   switch (sortBy) {
@@ -28,8 +28,8 @@ export const discover = (query, sortBy, searchBy) => {
     case 'Genre':
       search = '&with_genres=';
       break;
-    case 'People':
-      search = '&with_people=';
+    case 'Actor':
+      search = '&with_cast=';
       break;
     default:
       search = '&with_keywords=';
@@ -37,7 +37,7 @@ export const discover = (query, sortBy, searchBy) => {
   const byTitleQuery = `${queryConst}/search/movie?
 api_key=${apiKey}
 &language=en-US
-&query=${query}
+&query=${value}
 &page=1
 &include_adult=false`;
   const discoverQuery = `${queryConst}/discover/movie?
@@ -47,8 +47,7 @@ api_key=${apiKey}
 &include_adult=false
 &include_video=false
 &page=1
-${search}${query}
-&vote_count.gte=1000`;
+${search}${value}`;
 
 
   return searchBy === 'Title' ? byTitleQuery : discoverQuery;
@@ -58,12 +57,16 @@ export const searchPerson = (name) => {
   const nameEdited = name.replace(' ', '%20');
 
   return `${queryConst}/search/person?
-  api_key=<<api_key>>&language=en-US&query=${nameEdited}&page=1&include_adult=false`;
+api_key=${apiKey}
+&language=en-US
+&query=${nameEdited}
+&page=1
+&include_adult=false`;
 };
 
 export const searchMovie = (movie) => {
   const movieEdited = movie.replace(' ', '%20');
 
   return `${queryConst}/search/movie?api_key=${apiKey}&
-  language=en-US&query=${movieEdited}&page=1&include_adult=false`;
+language=en-US&query=${movieEdited}&page=1&include_adult=false`;
 };

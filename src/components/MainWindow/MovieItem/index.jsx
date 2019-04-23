@@ -15,7 +15,7 @@ const MovieItem = ({ movie }) => {
       <div className="movie-list__text-container">
         <div className="movie-list__title-container">
           <div className="movie-list__title">{`${title}`}</div>
-          <div className="movie-list__score">{`Rating: ${rating}  Language: ${language} Year: ${year}`}</div>
+          <div className="movie-list__score">{`Rating: ${rating} | Language: ${language.toUpperCase()} | Year: ${year}`}</div>
         </div>
         <div className="movie-list__description">{overview}</div>
       </div>

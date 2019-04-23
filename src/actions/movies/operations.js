@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import FetchData from '../../util/FetchData';
 import { discoverMovie } from './actions';
-import { discover } from '../../util/queries';
+import { discover, searchPerson } from '../../util/queries';
 
 const sortMovies = (data, sortBy) => {
   const sortOrder = 'desc';
@@ -51,9 +51,22 @@ const sortMovies = (data, sortBy) => {
 
 export default function searchMovies(value, sortBy, searchBy) {
   return (dispatch) => {
-    FetchData.get(discover(value, sortBy, searchBy)).then((data) => {
-      const sortedData = sortMovies(data.results, sortBy);
-      dispatch(discoverMovie(sortedData));
-    }).catch(error => console.log(error));
+    if (searchBy === 'Actor') {
+      FetchData.get(searchPerson(value)).then((personData) => {
+        let personId = null;
+        if (value.toLowerCase() === personData.results[0].name.toLowerCase()){
+          personId = personData.results[0].id;
+        }
+        FetchData.get(discover(personId, sortBy, searchBy)).then((data) => {
+          const sortedData = sortMovies(data.results, sortBy);
+          dispatch(discoverMovie(sortedData));
+        }).catch(error => console.log(error));
+      }).catch(error => console.log(error));
+    } else {
+      FetchData.get(discover(value, sortBy, searchBy)).then((data) => {
+        const sortedData = sortMovies(data.results, sortBy);
+        dispatch(discoverMovie(sortedData));
+      }).catch(error => console.log(error));
+    }
   };
 }
