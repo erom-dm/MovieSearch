@@ -20,8 +20,21 @@ const sortMovies = (data, sortBy) => {
       iteratee = 'vote_average';
   }
 
+  const editedData = (input) => {
+    const result = [];
+    input.forEach((el) => {
+      result.push(_.mapValues(el, (value, key) => {
+        if (key === 'vote_average' && el.vote_count < 1000) {
+          return `${value} (< 1000 votes)`;
+        }
+        return value;
+      }));
+    });
+    return result;
+  };
+
   if (sortBy === 'Release year') {
-    return _.chain(data)
+    return _.chain(editedData(data))
       .mapValues((value, key) => {
         if (key === iteratee) {
           return Number(value.substr(0, 4));
@@ -31,7 +44,9 @@ const sortMovies = (data, sortBy) => {
       .orderBy(iteratee, sortOrder)
       .value();
   }
-  return _.orderBy(data, [iteratee], [sortOrder]);
+  return _.chain(editedData(data))
+    .orderBy([iteratee], [sortOrder])
+    .value();
 };
 
 export default function searchMovies(value, sortBy, searchBy) {
