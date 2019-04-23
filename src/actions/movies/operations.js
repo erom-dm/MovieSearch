@@ -1,6 +1,6 @@
 import FetchData from '../../util/FetchData';
 import { discoverMovie } from './actions';
-import { discover } from '../../util/api';
+import { discover } from '../../util/queries';
 
 export const discoverMovies = year => (dispatch) => {
   FetchData.get(discover(year)).then((data) => {

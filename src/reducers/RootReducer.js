@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import movies from './movies';
+import search from './search';
 
 const rootReducer = combineReducers({
   movies,
-  form: formReducer,
+  search,
 });
 
 export default rootReducer;

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { changeSearchType, changeSortType } from '../../../actions/search/actions';
 import './dropdown.scss';
 
 class Dropdown extends Component {
   state = {
     displayMenu: false,
-    searchType: 'Title',
   };
 
   showDropdownMenu = (e) => {
@@ -20,34 +22,54 @@ class Dropdown extends Component {
     });
   };
 
-  handleListItemClick = (value) => {
-    this.setState({ searchType: value });
+  handleMenuType = () => {
+    const {
+      menuType, changeSort, changeSearch, searchType, sortType,
+    } = this.props;
+    let action;
+    let selectedItem;
+    let payloadKey;
+    if (menuType === 'Search') {
+      action = changeSearch;
+      payloadKey = 'searchBy';
+      selectedItem = searchType;
+    } else if (menuType === 'Sort') {
+      action = changeSort;
+      payloadKey = 'sortBy';
+      selectedItem = sortType;
+    }
+
+    return {
+      action,
+      payloadKey,
+      actionLabel: menuType,
+      selectedItem,
+    };
+  };
+
+  handleListItemClick = (e) => {
+    const { action, payloadKey } = this.handleMenuType();
+    return action({ [payloadKey]: e.target.value });
   };
 
   render() {
-    const { displayMenu, searchType } = this.state;
+    const { items } = this.props;
+    const { displayMenu } = this.state;
+    const { actionLabel, selectedItem } = this.handleMenuType();
+    const listItems = items.map((item, index) => (
+      <li className="dropdown__item" key={index}>
+        <button type="button" value={item} onClick={this.handleListItemClick}>{item}</button>
+      </li>
+    ));
+
     return (
       <div className="dropdown">
         <button type="button" className="dropdown__button" onClick={this.showDropdownMenu}>
-          {`By: ${searchType}`}
+          {`${actionLabel} By: ${selectedItem}`}
         </button>
         {displayMenu ? (
           <ul className="dropdown__list">
-            <li className="dropdown__item">
-              <button type="button" onClick={this.handleListItemClick.bind(this, 'Title')}>Title</button>
-            </li>
-            <li className="dropdown__item">
-              <button type="button" onClick={this.handleListItemClick.bind(this, 'Year')}>Year</button>
-            </li>
-            <li className="dropdown__item">
-              <button type="button" onClick={this.handleListItemClick.bind(this, 'Genre')}>Genre</button>
-            </li>
-            <li className="dropdown__item">
-              <button type="button" onClick={this.handleListItemClick.bind(this, 'Cast')}>Cast</button>
-            </li>
-            <li className="dropdown__item">
-              <button type="button" onClick={this.handleListItemClick.bind(this, 'Director')}>Director</button>
-            </li>
+            {listItems}
           </ul>
         ) : (null)}
       </div>
@@ -55,4 +77,23 @@ class Dropdown extends Component {
   }
 }
 
-export default Dropdown;
+Dropdown.propTypes = {
+  menuType: PropTypes.string.isRequired,
+  changeSort: PropTypes.func.isRequired,
+  changeSearch: PropTypes.func.isRequired,
+  searchType: PropTypes.string.isRequired,
+  sortType: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+const mapStateToProps = state => ({
+  searchType: state.search.searchBy,
+  sortType: state.search.sortBy,
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeSort: value => dispatch(changeSortType(value)),
+  changeSearch: value => dispatch(changeSearchType(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dropdown);

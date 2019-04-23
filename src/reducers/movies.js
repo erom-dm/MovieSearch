@@ -4,7 +4,6 @@ const movieReducer = (state = [], action) => {
   switch (action.type) {
     case DISCOVER:
       return [
-        ...state,
         ...action.payload,
       ];
     default:

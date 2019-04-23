@@ -18,7 +18,8 @@ class Header extends Component {
         <div className="header__logo">My App</div>
         <div className="header__search-container">
           <SearchBar query={this.testQuery} />
-          <Dropdown />
+          <Dropdown menuType="Search" items={['Title', 'Year', 'Genre', 'People']} />
+          <Dropdown menuType="Sort" items={['Rating', 'Popularity', 'Release Date']} />
         </div>
         <div className="header__display-mode">
           <button className="header__switch" type="button">small</button>
