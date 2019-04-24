@@ -28,15 +28,15 @@ class PaginationHandler extends Component {
 
   nextHandler = () => {
     const { setActivePage, lastQuery } = this.props;
-    const { active } = this.state;
+    const { active } = this.props;
     setActivePage(active + 1, lastQuery);
     this.pageHandler(active + 1);
   };
 
   backHandler = () => {
     const { setActivePage, lastQuery } = this.props;
-    const { active } = this.state;
-    setActivePage(active + 1, lastQuery);
+    const { active } = this.props;
+    setActivePage(active - 1, lastQuery);
     this.pageHandler(active - 1);
   };
 
@@ -46,14 +46,15 @@ class PaginationHandler extends Component {
     return (
       <Pagination className="pagination-container">
         <Pagination.Prev
-          disabled={active < 5}
-          onClick={active > 5 ? this.backHandler : undefined}
+          disabled={active === 1}
+          onClick={active > 0 ? this.backHandler : undefined}
         />
         {
           pageNumbers.map((number) => {
             if (
-              number >= parseInt(active, 10) - 3
-              && number <= parseInt(active, 10) + 3
+              (number >= active - 1 && number <= active + 1)
+              || (active === 1 && number <= 3)
+              || (active === totalPages && number >= totalPages - 2)
             ) {
               return (
                 <Pagination.Item
@@ -69,7 +70,7 @@ class PaginationHandler extends Component {
             return null;
           })
         }
-        <Pagination.Next onClick={active <= totalPages - 4 ? this.nextHandler : undefined} />
+        <Pagination.Next onClick={active < totalPages ? this.nextHandler : undefined} />
       </Pagination>
     );
   };

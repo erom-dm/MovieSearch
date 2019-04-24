@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import FetchData from '../../util/FetchData';
 import { discoverMovie } from './actions';
-import { setTotalPages, saveLastQuery } from '../search/actions';
+import { setTotalPages, saveLastQuery, setActivePage } from '../search/actions';
 import { discover, searchPerson, searchGenres } from '../../util/queries';
 
 // todo: sorting redundant?
@@ -60,6 +60,7 @@ export default function searchMovies(value, sortBy, searchBy, order) {
         const sortedData = sortMovies(data.results, sortBy, order);
         dispatch(setTotalPages({ totalPages: data.total_pages }));
         dispatch(discoverMovie(sortedData));
+        dispatch(setActivePage({ activePage: 1 }));
         dispatch(saveLastQuery({ lastQuery: queryString }));
       }).catch(error => console.log(error));
     };
