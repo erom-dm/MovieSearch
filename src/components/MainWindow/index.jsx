@@ -12,14 +12,14 @@ class MainWindow extends Component {
     const movieItems = movies.map(movie => <MovieItem movie={movie} key={movie.id} />);
     return (
       <div className="main">
-        <ul className="movie-list">
-          {movieItems}
-        </ul>
         {
           totalPages > 0
             ? <PaginationHandler totalPages={totalPages} />
             : null
         }
+        <ul className="movie-list">
+          {movieItems}
+        </ul>
       </div>
     );
   }

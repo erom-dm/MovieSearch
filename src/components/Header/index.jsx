@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import Dropdown from './Dropdown';
-import searchMovies from '../../actions/movies/operations';
+import { searchMovies } from '../../actions/movies/operations';
 import './header.scss';
 
 class Header extends Component {

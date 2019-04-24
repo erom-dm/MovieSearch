@@ -1,9 +1,13 @@
-import { CHANGE_SEARCH_TYPE, CHANGE_SORT_TYPE, SET_TOTAL_PAGES } from '../actions/search/actions';
+import {
+  CHANGE_SEARCH_TYPE, CHANGE_SORT_TYPE, SET_TOTAL_PAGES, SAVE_LAST_QUERY, SET_ACTIVE_PAGE,
+} from '../actions/search/actions';
 
 const defaultState = {
   searchBy: 'Title',
   sortBy: 'Rating',
   totalPages: 0,
+  activePage: 0,
+  lastQuery: null,
 };
 
 const searchReducer = (state = defaultState, action) => {
@@ -19,6 +23,16 @@ const searchReducer = (state = defaultState, action) => {
         ...action.payload,
       };
     case SET_TOTAL_PAGES:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    case SAVE_LAST_QUERY:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    case SET_ACTIVE_PAGE:
       return {
         ...state,
         ...action.payload,
