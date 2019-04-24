@@ -71,3 +71,5 @@ export const searchMovie = (movie) => {
   return `${queryConst}/search/movie?api_key=${apiKey}&
 language=en-US&query=${movieEdited}&page=1&include_adult=false`;
 };
+
+export const searchGenres = () => `${queryConst}/genre/movie/list?api_key=${apiKey}&language=en-US`;

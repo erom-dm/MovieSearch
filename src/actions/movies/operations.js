@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import FetchData from '../../util/FetchData';
 import { discoverMovie } from './actions';
-import { discover, searchPerson } from '../../util/queries';
+import { discover, searchPerson, searchGenres } from '../../util/queries';
 
 // todo: sorting redundant?
 
@@ -56,13 +56,26 @@ export default function searchMovies(value, sortBy, searchBy, order) {
     if (searchBy === 'Actor') {
       FetchData.get(searchPerson(value)).then((personData) => {
         let personId = null;
-        if (value.toLowerCase() === personData.results[0].name.toLowerCase()){
+        if (value.toLowerCase() === personData.results[0].name.toLowerCase()) {
           personId = personData.results[0].id;
         }
         FetchData.get(discover(personId, sortBy, searchBy, order)).then((data) => {
           const sortedData = sortMovies(data.results, sortBy, order);
           dispatch(discoverMovie(sortedData));
         }).catch(error => console.log(error));
+      }).catch(error => console.log(error));
+    } else if (searchBy === 'Genre') {
+      FetchData.get(searchGenres()).then((genreData) => {
+        let genreId = null;
+        genreData.genres.forEach((item) => {
+          if (item.name.toLowerCase() === value.toLowerCase()) {
+            genreId = item.id;
+          }
+          FetchData.get(discover(genreId, sortBy, searchBy, order)).then((data) => {
+            const sortedData = sortMovies(data.results, sortBy, order);
+            dispatch(discoverMovie(sortedData));
+          }).catch(error => console.log(error));
+        });
       }).catch(error => console.log(error));
     } else {
       FetchData.get(discover(value, sortBy, searchBy, order)).then((data) => {
