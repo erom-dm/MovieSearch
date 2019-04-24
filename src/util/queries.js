@@ -1,21 +1,21 @@
 const apiKey = '5874acfd11651a28c55771624f7021f4';
 const queryConst = 'https://api.themoviedb.org/3';
 
-export const discover = (value, sortBy, searchBy) => {
+export const discover = (value, sortBy, searchBy, order) => {
   let sort;
   let search;
   switch (sortBy) {
     case 'Popularity':
-      sort = 'popularity.desc';
+      sort = `popularity.${order}`;
       break;
     case 'Rating':
-      sort = 'vote_average.desc';
+      sort = `vote_average.${order}`;
       break;
     case 'Release year':
-      sort = 'release_date.desc';
+      sort = `release_date.${order}`;
       break;
     default:
-      sort = 'vote_average.desc';
+      sort = `vote_average.${order}`;
   }
 
   switch (searchBy) {
@@ -47,7 +47,8 @@ api_key=${apiKey}
 &include_adult=false
 &include_video=false
 &page=1
-${search}${value}`;
+${search}${value}
+&vote_count.gte=500`;
 
 
   return searchBy === 'Title' ? byTitleQuery : discoverQuery;

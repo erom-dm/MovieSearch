@@ -31,6 +31,19 @@
     width: 140px;
   }
 
+  &__sort-order-switch{
+    @include button-reset;
+    width: 50px;
+    height: 100%;
+    background-color: #dcdcdc;
+    border-radius: 4px;
+    margin: 0 2px;
+
+    &:focus{
+      background-color: grey;
+    }
+  }
+
   &__switch{
     @include button-reset;
     width: 100%;
@@ -42,6 +55,4 @@
       background-color: grey;
     }
   }
-
-
 }

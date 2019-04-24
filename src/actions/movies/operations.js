@@ -3,8 +3,10 @@ import FetchData from '../../util/FetchData';
 import { discoverMovie } from './actions';
 import { discover, searchPerson } from '../../util/queries';
 
-const sortMovies = (data, sortBy) => {
-  const sortOrder = 'desc';
+// todo: sorting redundant?
+
+const sortMovies = (data, sortBy, order) => {
+  const sortOrder = order;
   let iteratee;
   switch (sortBy) {
     case 'Rating':
@@ -24,8 +26,8 @@ const sortMovies = (data, sortBy) => {
     const result = [];
     input.forEach((el) => {
       result.push(_.mapValues(el, (value, key) => {
-        if (key === 'vote_average' && el.vote_count < 1000) {
-          return `${value} (< 1000 votes)`;
+        if (key === 'vote_average' && el.vote_count < 500) {
+          return `(< 500 votes) ${value}`;
         }
         return value;
       }));
@@ -49,7 +51,7 @@ const sortMovies = (data, sortBy) => {
     .value();
 };
 
-export default function searchMovies(value, sortBy, searchBy) {
+export default function searchMovies(value, sortBy, searchBy, order) {
   return (dispatch) => {
     if (searchBy === 'Actor') {
       FetchData.get(searchPerson(value)).then((personData) => {
@@ -57,14 +59,14 @@ export default function searchMovies(value, sortBy, searchBy) {
         if (value.toLowerCase() === personData.results[0].name.toLowerCase()){
           personId = personData.results[0].id;
         }
-        FetchData.get(discover(personId, sortBy, searchBy)).then((data) => {
-          const sortedData = sortMovies(data.results, sortBy);
+        FetchData.get(discover(personId, sortBy, searchBy, order)).then((data) => {
+          const sortedData = sortMovies(data.results, sortBy, order);
           dispatch(discoverMovie(sortedData));
         }).catch(error => console.log(error));
       }).catch(error => console.log(error));
     } else {
-      FetchData.get(discover(value, sortBy, searchBy)).then((data) => {
-        const sortedData = sortMovies(data.results, sortBy);
+      FetchData.get(discover(value, sortBy, searchBy, order)).then((data) => {
+        const sortedData = sortMovies(data.results, sortBy, order);
         dispatch(discoverMovie(sortedData));
       }).catch(error => console.log(error));
     }
