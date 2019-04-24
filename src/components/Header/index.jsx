@@ -3,27 +3,26 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import Dropdown from './Dropdown';
-import { searchMovies } from '../../actions/movies/operations';
+import searchMovies from '../../actions/movies/operations';
+import { changeSortMode } from '../../actions/search/actions';
 import './header.scss';
 
 class Header extends Component {
-  state = {
-    sortOrder: 'desc',
-  };
-
   searchQuery = (value) => {
-    const { discover, sortBy, searchBy } = this.props;
-    const { sortOrder } = this.state;
-    discover(value, sortBy, searchBy, sortOrder);
+    const {
+      discover, sortBy, searchBy, sortMode,
+    } = this.props;
+    discover(value, sortBy, searchBy, sortMode);
   };
 
   handleSortOrderSwitch = () => {
-    const { sortOrder } = this.state;
-    this.setState({ sortOrder: sortOrder === 'desc' ? 'asc' : 'desc' });
+    const { sortMode, switchSortMode } = this.props;
+    const newMode = sortMode === 'desc' ? 'asc' : 'desc';
+    switchSortMode({ sortMode: newMode });
   };
 
   render() {
-    const { sortOrder } = this.state;
+    const { sortMode } = this.props;
     return (
       <div className="header">
         <div className="header__logo">My App</div>
@@ -32,7 +31,7 @@ class Header extends Component {
           <Dropdown menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />
           <Dropdown menuType="Sort" items={['Rating', 'Popularity', 'Release year']} />
           <button className="header__sort-order-switch" type="button" onClick={this.handleSortOrderSwitch}>
-            {sortOrder}
+            {sortMode}
           </button>
         </div>
         <div className="header__display-mode">
@@ -48,17 +47,21 @@ Header.propTypes = {
   discover: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
   searchBy: PropTypes.string.isRequired,
+  switchSortMode: PropTypes.func.isRequired,
+  sortMode: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
   sortBy: state.search.sortBy,
   searchBy: state.search.searchBy,
+  sortMode: state.search.sortMode,
 });
 
 const mapDispatchToProps = dispatch => ({
   discover: (value, sortBy, searchBy, order) => {
     dispatch(searchMovies(value, sortBy, searchBy, order));
   },
+  switchSortMode: mode => dispatch(changeSortMode(mode)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

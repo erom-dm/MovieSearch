@@ -20,23 +20,23 @@ class PaginationHandler extends Component {
   };
 
   pagingHandler = (event) => {
-    const { setActivePage } = this.props;
+    const { setActivePage, lastQuery } = this.props;
     const offset = parseInt(event.target.id, 10);
-    setActivePage(offset);
+    setActivePage(offset, lastQuery);
     this.pageHandler(event.target.id - 1);
   };
 
   nextHandler = () => {
-    const { setActivePage } = this.props;
+    const { setActivePage, lastQuery } = this.props;
     const { active } = this.state;
-    setActivePage(active + 1);
+    setActivePage(active + 1, lastQuery);
     this.pageHandler(active + 1);
   };
 
   backHandler = () => {
-    const { setActivePage } = this.props;
+    const { setActivePage, lastQuery } = this.props;
     const { active } = this.state;
-    setActivePage(active + 1);
+    setActivePage(active + 1, lastQuery);
     this.pageHandler(active - 1);
   };
 
@@ -45,8 +45,10 @@ class PaginationHandler extends Component {
     // array with numbers | number of pages | currently active page
     return (
       <Pagination className="pagination-container">
-        <Pagination.Prev disabled={active < 5} onClick={active > 5 && this.backHandler} />
-
+        <Pagination.Prev
+          disabled={active < 5}
+          onClick={active > 5 ? this.backHandler : undefined}
+        />
         {
           pageNumbers.map((number) => {
             if (
@@ -56,6 +58,7 @@ class PaginationHandler extends Component {
               return (
                 <Pagination.Item
                   id={number}
+                  key={number}
                   active={number === active}
                   onClick={this.pagingHandler}
                 >
@@ -64,8 +67,9 @@ class PaginationHandler extends Component {
               );
             }
             return null;
-          })}
-        <Pagination.Next onClick={active <= totalPages - 4 && this.nextHandler} />
+          })
+        }
+        <Pagination.Next onClick={active <= totalPages - 4 ? this.nextHandler : undefined} />
       </Pagination>
     );
   };
@@ -88,14 +92,16 @@ PaginationHandler.propTypes = {
   totalPages: PropTypes.number.isRequired,
   setActivePage: PropTypes.func.isRequired,
   active: PropTypes.number.isRequired,
+  lastQuery: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
+  lastQuery: state.search.lastQuery,
   active: state.search.activePage,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setActivePage: pageNum => dispatch(storeActivePage(pageNum)),
+  setActivePage: (pageNum, lastQuery) => dispatch(storeActivePage(pageNum, lastQuery)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaginationHandler);

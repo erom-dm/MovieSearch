@@ -1,45 +1,31 @@
 import {
-  CHANGE_SEARCH_TYPE, CHANGE_SORT_TYPE, SET_TOTAL_PAGES, SAVE_LAST_QUERY, SET_ACTIVE_PAGE,
+  CHANGE_SEARCH_TYPE, CHANGE_SORT_TYPE, SET_TOTAL_PAGES, SAVE_LAST_QUERY, SET_ACTIVE_PAGE, CHANGE_SORT_MODE,
 } from '../actions/search/actions';
 
 const defaultState = {
   searchBy: 'Title',
   sortBy: 'Rating',
+  sortMode: 'desc',
   totalPages: 0,
   activePage: 0,
-  lastQuery: null,
+  lastQuery: '',
 };
 
 const searchReducer = (state = defaultState, action) => {
-  switch (action.type) {
-    case CHANGE_SEARCH_TYPE:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    case CHANGE_SORT_TYPE:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    case SET_TOTAL_PAGES:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    case SAVE_LAST_QUERY:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    case SET_ACTIVE_PAGE:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    default:
-      return state;
+  const trigger = (action.type === CHANGE_SEARCH_TYPE
+  || action.type === CHANGE_SORT_TYPE
+  || action.type === SET_TOTAL_PAGES
+  || action.type === SAVE_LAST_QUERY
+  || action.type === SET_ACTIVE_PAGE
+  || action.type === CHANGE_SORT_MODE);
+
+  if (trigger) {
+    return {
+      ...state,
+      ...action.payload,
+    };
   }
+  return state;
 };
 
 export default searchReducer;

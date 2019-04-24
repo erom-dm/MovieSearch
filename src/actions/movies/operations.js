@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import FetchData from '../../util/FetchData';
-import { discoverMovie, changePage } from './actions';
+import { discoverMovie } from './actions';
 import { setTotalPages, saveLastQuery } from '../search/actions';
 import { discover, searchPerson, searchGenres } from '../../util/queries';
 
@@ -52,7 +52,7 @@ const sortMovies = (data, sortBy, order) => {
     .value();
 };
 
-export function searchMovies(value, sortBy, searchBy, order) {
+export default function searchMovies(value, sortBy, searchBy, order) {
   return (dispatch) => {
     const discoverQuery = (queryValue) => {
       const queryString = discover(queryValue, sortBy, searchBy, order);
@@ -87,16 +87,3 @@ export function searchMovies(value, sortBy, searchBy, order) {
     }
   };
 }
-
-
-/*export function usePagination(pageNum, lastQueryString){
-  const oldPageNumber = lastQueryString.charAt(lastQueryString.search('&page=') + 6);
-  const newQueryString = lastQueryString.replace('&')
-  //changePage(pagenum);
-  FetchData.get(queryString).then((data) => {
-    const sortedData = sortMovies(data.results, sortBy, order);
-    dispatch(setTotalPages({ totalPages: data.total_pages }));
-    dispatch(discoverMovie(sortedData));
-    dispatch(saveLastQuery({ lastQuery: queryString }));
-  }).catch(error => console.log(error));
-};*/

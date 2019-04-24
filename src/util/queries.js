@@ -4,6 +4,7 @@ const queryConst = 'https://api.themoviedb.org/3';
 export const discover = (value, sortBy, searchBy, order) => {
   let sort;
   let search;
+  // todo search by year
   switch (sortBy) {
     case 'Popularity':
       sort = `popularity.${order}`;
@@ -52,6 +53,23 @@ ${search}${value}
 
 
   return searchBy === 'Title' ? byTitleQuery : discoverQuery;
+};
+
+export const modifyOldQuery = (pageNum, oldQuery) => {
+  const index = oldQuery.search('&page=') + 6;
+  if (index - 6 < 0) {
+    return oldQuery;
+  }
+  let counter = index;
+  while (counter < oldQuery.length) {
+    const curChar = parseInt(oldQuery.charAt(counter), 10);
+    if (!Number.isNaN(curChar)) {
+      counter += 1;
+    } else {
+      break;
+    }
+  }
+  return oldQuery.replace(oldQuery.slice(index - 6, counter), `&page=${pageNum}`);
 };
 
 export const searchPerson = (name) => {
