@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import FetchData from '../../util/FetchData';
 import { discoverMovie } from './actions';
+import { setTotalPages } from '../search/actions';
 import { discover, searchPerson, searchGenres } from '../../util/queries';
 
 // todo: sorting redundant?
@@ -53,16 +54,21 @@ const sortMovies = (data, sortBy, order) => {
 
 export default function searchMovies(value, sortBy, searchBy, order) {
   return (dispatch) => {
+    const discoverQuery = (queryValue) => {
+      FetchData.get(discover(queryValue, sortBy, searchBy, order)).then((data) => {
+        const sortedData = sortMovies(data.results, sortBy, order);
+        dispatch(setTotalPages({ totalPages: data.total_pages }));
+        dispatch(discoverMovie(sortedData));
+      }).catch(error => console.log(error));
+    };
+
     if (searchBy === 'Actor') {
       FetchData.get(searchPerson(value)).then((personData) => {
         let personId = null;
         if (value.toLowerCase() === personData.results[0].name.toLowerCase()) {
           personId = personData.results[0].id;
         }
-        FetchData.get(discover(personId, sortBy, searchBy, order)).then((data) => {
-          const sortedData = sortMovies(data.results, sortBy, order);
-          dispatch(discoverMovie(sortedData));
-        }).catch(error => console.log(error));
+        discoverQuery(personId);
       }).catch(error => console.log(error));
     } else if (searchBy === 'Genre') {
       FetchData.get(searchGenres()).then((genreData) => {
@@ -71,17 +77,11 @@ export default function searchMovies(value, sortBy, searchBy, order) {
           if (item.name.toLowerCase() === value.toLowerCase()) {
             genreId = item.id;
           }
-          FetchData.get(discover(genreId, sortBy, searchBy, order)).then((data) => {
-            const sortedData = sortMovies(data.results, sortBy, order);
-            dispatch(discoverMovie(sortedData));
-          }).catch(error => console.log(error));
+          discoverQuery(genreId);
         });
       }).catch(error => console.log(error));
     } else {
-      FetchData.get(discover(value, sortBy, searchBy, order)).then((data) => {
-        const sortedData = sortMovies(data.results, sortBy, order);
-        dispatch(discoverMovie(sortedData));
-      }).catch(error => console.log(error));
+      discoverQuery(value);
     }
   };
 }
