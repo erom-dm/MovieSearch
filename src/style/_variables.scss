@@ -1,3 +1,6 @@
+$primary-orange: #ec832f;
+$dark-grey: #443027;
+
 @mixin button-reset {
   padding: 0;
   border: none;
@@ -6,4 +9,3 @@
   background-color: transparent;
   cursor: pointer;
 }
-
