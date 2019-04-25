@@ -7,6 +7,7 @@ import searchMovies from '../../actions/movies/operations';
 import { changeSortMode, changeViewMode } from '../../actions/search/actions';
 import logo from '../../img/logo.jpg';
 import './header.scss';
+import './header-tablet.scss';
 
 class Header extends Component {
   searchQuery = (value) => {

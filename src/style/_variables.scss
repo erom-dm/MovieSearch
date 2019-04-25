@@ -6,6 +6,7 @@ $focus-grey: #747474;
 $mobile-width: 320px;
 $tablet-width: 720px;
 $desktop-width: 1200px;
+$large-desktop: 1350px;
 
 @mixin button-reset {
   padding: 0;
@@ -29,7 +30,7 @@ $desktop-width: 1200px;
 }
 
 @mixin desktop {
-  @media (min-width: #{$desktop-width}) {
+  @media (min-width: #{$desktop-width}) and (max-width: #{$large-desktop - 1px}) {
     @content;
   }
 }

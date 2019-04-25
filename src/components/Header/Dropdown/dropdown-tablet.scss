@@ -1,0 +1,12 @@
+@import '../../../style/variables';
+
+@include tablet{
+  .dropdown{
+    margin: 0 5px;
+
+    &__button{
+      content: "";
+      width: 100px;
+    }
+  }
+}
