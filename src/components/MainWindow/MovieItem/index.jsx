@@ -1,6 +1,7 @@
 import React from 'react';
 import './movie-item.scss';
 import PropTypes from 'prop-types';
+import noImage from '../../../img/missing-image.png';
 
 const MovieItem = ({ movie }) => {
   const {
@@ -8,7 +9,7 @@ const MovieItem = ({ movie }) => {
     original_language: language, overview, release_date: rYear,
   } = movie;
   const year = rYear.substr(0, 4);
-  const posterURL = `https://image.tmdb.org/t/p/w200${posterPath}`;
+  const posterURL = posterPath === null ? noImage : `https://image.tmdb.org/t/p/w200${posterPath}`;
   const editedOverview = overview === '' ? '< Description is missing >' : overview;
   return (
     <li className="movie-list__movie-item">
