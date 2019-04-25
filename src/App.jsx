@@ -1,28 +1,15 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import Header from './components/Header';
 import Main from './components/MainWindow';
+import Footer from './components/Footer';
 import './App.css';
 
-class App extends Component {
-  state = {
-    movies: {},
-  };
-
-  render() {
-    return (
-      <Fragment>
-        <Header />
-        <Main />
-      </Fragment>
-    );
-  }
-}
+const App = () => (
+  <div className="app-container">
+    <Header />
+    <Main />
+    <Footer />
+  </div>
+);
 
 export default App;
-// https://api.themoviedb.org/3/movie/76341?api_key={api_key}
-// 5874acfd11651a28c55771624f7021f4
-
-// for images use: https://image.tmdb.org/t/p/w200 + ${path} (w - width of image in pixels)
-
-// seach functionality: https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
-// with general movie info from 'results' field, we can query following to get full info: https://api.themoviedb.org/3/movie/343611?api_key={api_key}

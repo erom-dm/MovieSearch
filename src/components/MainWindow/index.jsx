@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MovieItem from './MovieItem';
@@ -12,16 +12,18 @@ const MainWindow = (props) => {
     ? movies.map(movie => <MovieItemSmall movie={movie} key={movie.id} />)
     : movies.map(movie => <MovieItem movie={movie} key={movie.id} />);
   return (
-    <div className="main">
-      <ul className="movie-list">
-        {movieItems}
-      </ul>
-      {
-        totalPages > 1 && movies.length > 0
-          ? <PaginationHandler totalPages={totalPages} />
-          : null
-      }
-    </div>
+    <Fragment>
+      <div className="main">
+        <ul className="movie-list">
+          {movieItems}
+        </ul>
+        {
+            totalPages > 1 && movies.length > 0
+              ? <PaginationHandler totalPages={totalPages} />
+              : null
+        }
+      </div>
+    </Fragment>
   );
 };
 
