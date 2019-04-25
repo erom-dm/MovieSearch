@@ -3,13 +3,13 @@
 .header{
   display: flex;
   justify-content: space-between;
-  background-color: #ff552b;
-  height: 50px;
-  padding: 10px 20px;
+  background-color: $primary-orange;
+  height: 75px;
+  padding: 0 20px;
   font-family: Roboto, sans-serif;
 
   &__logo{
-    width: 150px;
+    max-height: 75px;
     background-color: #1a1a1a;
     color: #fff;
     text-align: center;
@@ -18,7 +18,7 @@
   &__search-container{
     display: flex;
     align-items: center;
-    background-color: #ff2220;
+    background-color: $primary-orange;
   }
 
   &__search-menu{

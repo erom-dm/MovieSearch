@@ -5,6 +5,7 @@ import SearchBar from './SearchBar';
 import Dropdown from './Dropdown';
 import searchMovies from '../../actions/movies/operations';
 import { changeSortMode, changeViewMode } from '../../actions/search/actions';
+import logo from '../../img/logo.jpg';
 import './header.scss';
 
 class Header extends Component {
@@ -31,7 +32,7 @@ class Header extends Component {
     const { sortMode } = this.props;
     return (
       <div className="header">
-        <div className="header__logo">My App</div>
+        <img className="header__logo" src={logo} alt=" " />
         <div className="header__search-container">
           <SearchBar query={this.searchQuery} />
           <Dropdown menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />
