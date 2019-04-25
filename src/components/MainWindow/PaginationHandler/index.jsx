@@ -97,8 +97,8 @@ PaginationHandler.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  lastQuery: state.search.lastQuery,
-  active: state.search.activePage,
+  lastQuery: state.util.lastQuery,
+  active: state.util.activePage,
 });
 
 const mapDispatchToProps = dispatch => ({

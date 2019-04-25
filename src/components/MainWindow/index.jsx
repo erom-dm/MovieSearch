@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import MovieItem from './MovieItem';
+//import MovieItem from './MovieItem';
+import MovieItemSmall from './MovieItemSmall';
 import PaginationHandler from './PaginationHandler';
 import './main-window.scss';
 
@@ -9,7 +10,7 @@ class MainWindow extends Component {
   render() {
     const { totalPages } = this.props;
     const { movies } = this.props;
-    const movieItems = movies.map(movie => <MovieItem movie={movie} key={movie.id} />);
+    const movieItems = movies.map(movie => <MovieItemSmall movie={movie} key={movie.id} />);
     return (
       <div className="main">
         {
@@ -32,7 +33,7 @@ MainWindow.propTypes = {
 
 const MapStateToProps = state => ({
   movies: state.movies,
-  totalPages: state.search.totalPages,
+  totalPages: state.util.totalPages,
 });
 
 const MapDispatchToProps = dispatch => ({});

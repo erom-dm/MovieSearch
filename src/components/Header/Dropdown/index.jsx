@@ -87,8 +87,8 @@ Dropdown.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  searchType: state.search.searchBy,
-  sortType: state.search.sortBy,
+  searchType: state.util.searchBy,
+  sortType: state.util.sortBy,
 });
 
 const mapDispatchToProps = dispatch => ({

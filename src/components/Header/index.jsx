@@ -52,9 +52,9 @@ Header.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  sortBy: state.search.sortBy,
-  searchBy: state.search.searchBy,
-  sortMode: state.search.sortMode,
+  sortBy: state.util.sortBy,
+  searchBy: state.util.searchBy,
+  sortMode: state.util.sortMode,
 });
 
 const mapDispatchToProps = dispatch => ({

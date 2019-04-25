@@ -1,0 +1,39 @@
+.movie-list{
+
+  &__poster{
+    margin-right: 10px;
+  }
+
+  &__movie-item-small{
+    display: flex;
+    border-radius: 10px;
+    background-color: #c9c9c9;
+    padding: 5px 5px;
+    margin-bottom: 5px;
+    font-family: Roboto, sans-serif;
+
+    img{
+      max-height: 50px;
+    }
+  }
+
+  &__text-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+  }
+
+  &__title{
+    font-weight: 600;
+  }
+
+  &__info{
+    margin-left: 6px;
+    font-weight: 400;
+  }
+}
