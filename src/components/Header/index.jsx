@@ -37,13 +37,11 @@ class Header extends Component {
           <Dropdown menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />
           <SearchBar query={this.searchQuery} />
           <Dropdown menuType="Sort" items={['Rating', 'Popularity', 'Year']} />
-          <button className="header__sort-order-switch" type="button" onClick={this.handleSortOrderSwitch}>
-            {sortMode}
-          </button>
+          <button className={`header__sort-order-switch ${sortMode}`} type="button" onClick={this.handleSortOrderSwitch} />
         </div>
         <div className="header__display-mode">
-          <button className="header__switch" type="button" value onClick={this.handleChangeViewMode}>small</button>
-          <button className="header__switch" type="button" value={false} onClick={this.handleChangeViewMode}>large</button>
+          <button className="header__switch row" type="button" value onClick={this.handleChangeViewMode} />
+          <button className="header__switch tile" type="button" value={false} onClick={this.handleChangeViewMode} />
         </div>
       </div>
     );

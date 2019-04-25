@@ -5,7 +5,7 @@
   justify-content: space-between;
   background-color: $primary-orange;
   height: 75px;
-  padding: 0 20px;
+  padding: 0 50px;
   font-family: Roboto, sans-serif;
 
   &__logo{
@@ -28,31 +28,58 @@
 
   &__display-mode{
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 10px;
     width: 140px;
   }
 
   &__sort-order-switch{
     @include button-reset;
-    width: 50px;
-    height: 100%;
-    background-color: #dcdcdc;
+    width: 40px;
+    height: 40px;
+   // background-color: $dark-grey;
     border-radius: 4px;
     margin: 0 2px;
+    color: #ffffff;
+    font-size: 20px;
 
     &:focus{
+      outline: none;
       background-color: grey;
     }
   }
 
   &__switch{
     @include button-reset;
-    width: 100%;
-    background-color: #dcdcdc;
+    height: 40px;
+    width: 40px;
     border-radius: 4px;
     margin: 0 2px;
 
     &:focus{
+      outline: none;
       background-color: grey;
     }
+  }
+
+  .desc{
+    background: url('../../img/two-down-arrows.png') no-repeat 0 50%;
+    background-size: 32px 32px;
+  }
+
+  .asc{
+    background: url('../../img/two-arrows-pointing-up.png') no-repeat 0 50%;
+    background-size: 32px 32px;
+  }
+
+  .row{
+    background: url('../../img/menu-symbol-of-four-lines.png') no-repeat 0 50%;
+    background-size: 30px 30px;
+  }
+
+  .tile{
+    background: url('../../img/table.png') no-repeat;
+    background-size: 40px 40px;
   }
 }
