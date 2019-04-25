@@ -34,8 +34,8 @@ class Header extends Component {
       <div className="header">
         <img className="header__logo" src={logo} alt=" " />
         <div className="header__search-container">
-          <SearchBar query={this.searchQuery} />
           <Dropdown menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />
+          <SearchBar query={this.searchQuery} />
           <Dropdown menuType="Sort" items={['Rating', 'Popularity', 'Release year']} />
           <button className="header__sort-order-switch" type="button" onClick={this.handleSortOrderSwitch}>
             {sortMode}
