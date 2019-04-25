@@ -36,7 +36,7 @@ class Header extends Component {
         <div className="header__search-container">
           <Dropdown menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />
           <SearchBar query={this.searchQuery} />
-          <Dropdown menuType="Sort" items={['Rating', 'Popularity', 'Release year']} />
+          <Dropdown menuType="Sort" items={['Rating', 'Popularity', 'Year']} />
           <button className="header__sort-order-switch" type="button" onClick={this.handleSortOrderSwitch}>
             {sortMode}
           </button>

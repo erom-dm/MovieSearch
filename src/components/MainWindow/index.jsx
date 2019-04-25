@@ -14,7 +14,7 @@ const MainWindow = (props) => {
   return (
     <div className="main">
       {
-        totalPages > 0
+        totalPages > 0 && movies.length > 0
           ? <PaginationHandler totalPages={totalPages} />
           : null
       }

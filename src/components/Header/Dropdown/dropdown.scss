@@ -7,16 +7,16 @@
   align-self: stretch;
   margin: 0 10px;
 
-
   &__button{
     @include button-reset;
+    text-align: left;
     width: 200px;
     height: 40px;
     background-color: $dark-grey;
-    padding: 12px;
+    padding-left: 33px;
     border-radius: 5px;
-    font-weight: bold;
     color: white;
+    font-size: 20px;
     flex-grow: 1;
 
     &:focus{
@@ -25,13 +25,13 @@
 
     &:before{
       content: "";
-      position: relative;
+      position: absolute;
       width: 0;
       height: 0;
       border: 10px solid;
       border-color: white transparent transparent transparent;
-      right:6px;
-      top:15px;
+      left: 8px;
+      top: 33px;
     }
   }
 
@@ -39,7 +39,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    top:45px;
+    top:55px;
     right:0;
     width: 200px;
     font-weight:bold;
