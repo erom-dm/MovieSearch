@@ -3,6 +3,10 @@ $dark-grey: #443027;
 $light: #E3E3E3;
 $focus-grey: #747474;
 
+$mobile-width: 320px;
+$tablet-width: 720px;
+$desktop-width: 1200px;
+
 @mixin button-reset {
   padding: 0;
   border: none;
@@ -10,4 +14,22 @@ $focus-grey: #747474;
   color: inherit;
   background-color: transparent;
   cursor: pointer;
+}
+
+@mixin mobile {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
 }
