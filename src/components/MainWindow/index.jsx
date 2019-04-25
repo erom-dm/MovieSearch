@@ -13,14 +13,14 @@ const MainWindow = (props) => {
     : movies.map(movie => <MovieItem movie={movie} key={movie.id} />);
   return (
     <div className="main">
-      {
-        totalPages > 0 && movies.length > 0
-          ? <PaginationHandler totalPages={totalPages} />
-          : null
-      }
       <ul className="movie-list">
         {movieItems}
       </ul>
+      {
+        totalPages > 1 && movies.length > 0
+          ? <PaginationHandler totalPages={totalPages} />
+          : null
+      }
     </div>
   );
 };

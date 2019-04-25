@@ -15,7 +15,7 @@ class PaginationHandler extends Component {
 
   pageHandler = (offset) => {
     this.setState(({ paging }) => ({
-      paging: { ...paging, offset: offset },
+      paging: { ...paging, offset },
     }));
   };
 

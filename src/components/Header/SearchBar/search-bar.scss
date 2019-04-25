@@ -1,4 +1,4 @@
-@import '../../../../../../Desktop/src/style/variables';
+@import '../../../style/variables';
 
 .search-bar {
   width: 100%;
@@ -14,6 +14,7 @@
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #9d9998;
+    background-color: #fffbfa;
     font-size: 22px;
 
     &:focus{
@@ -28,26 +29,17 @@
     border: 1px solid $dark-grey;
     background: $dark-grey;
     text-align: center;
-    color: #fff;
+    color: $light;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
 
     &:focus{
       outline: none;
-      background: #747474;
+      background: $focus-grey;
     }
   }
 
 
 
 }
-
-/*
-.wrap{
-  width: 30%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}*/

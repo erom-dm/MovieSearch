@@ -1,3 +1,5 @@
+@import '../../../style/variables';
+
 .movie-list{
 
   &__poster{
@@ -7,7 +9,7 @@
   &__movie-item-small{
     display: flex;
     border-radius: 10px;
-    background-color: #c9c9c9;
+    background-color: $light;
     padding: 5px 5px;
     margin-bottom: 5px;
     font-family: Roboto, sans-serif;

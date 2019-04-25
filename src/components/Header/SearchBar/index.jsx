@@ -22,11 +22,9 @@ class SearchBar extends Component {
     const { value } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="wrap">
-          <div className="search-bar">
-            <input className="search-bar__input" value={value} onChange={this.handleChange} />
-            <button className="search-bar__submit-btn" type="submit">Search</button>
-          </div>
+        <div className="search-bar">
+          <input className="search-bar__input" value={value} onChange={this.handleChange} />
+          <button className="search-bar__submit-btn" type="submit">Search</button>
         </div>
       </form>
     );
