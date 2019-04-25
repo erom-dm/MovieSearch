@@ -4,6 +4,7 @@ export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
 export const SAVE_LAST_QUERY = 'SAVE_LAST_QUERY';
 export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
 export const CHANGE_SORT_MODE = 'CHANGE_SORT_MODE';
+export const CHANGE_VIEW_MODE = 'CHANGE_VIEW_MODE';
 
 export const changeSearchType = payload => ({
   type: CHANGE_SEARCH_TYPE,
@@ -32,5 +33,10 @@ export const setActivePage = payload => ({
 
 export const changeSortMode = payload => ({
   type: CHANGE_SORT_MODE,
+  payload,
+});
+
+export const changeViewMode = payload => ({
+  type: CHANGE_VIEW_MODE,
   payload,
 });

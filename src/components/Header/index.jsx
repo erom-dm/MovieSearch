@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import Dropdown from './Dropdown';
 import searchMovies from '../../actions/movies/operations';
-import { changeSortMode } from '../../actions/search/actions';
+import { changeSortMode, changeViewMode } from '../../actions/search/actions';
 import './header.scss';
 
 class Header extends Component {
@@ -21,6 +21,12 @@ class Header extends Component {
     switchSortMode({ sortMode: newMode });
   };
 
+  handleChangeViewMode = (e) => {
+    const { changeView } = this.props;
+    const isTrue = (e.target.value === 'true');
+    changeView({ minimizedView: isTrue });
+  };
+
   render() {
     const { sortMode } = this.props;
     return (
@@ -35,8 +41,8 @@ class Header extends Component {
           </button>
         </div>
         <div className="header__display-mode">
-          <button className="header__switch" type="button">small</button>
-          <button className="header__switch" type="button">large</button>
+          <button className="header__switch" type="button" value onClick={this.handleChangeViewMode}>small</button>
+          <button className="header__switch" type="button" value={false} onClick={this.handleChangeViewMode}>large</button>
         </div>
       </div>
     );
@@ -49,6 +55,7 @@ Header.propTypes = {
   searchBy: PropTypes.string.isRequired,
   switchSortMode: PropTypes.func.isRequired,
   sortMode: PropTypes.string.isRequired,
+  changeView: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -62,6 +69,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(searchMovies(value, sortBy, searchBy, order));
   },
   switchSortMode: mode => dispatch(changeSortMode(mode)),
+  changeView: mode => dispatch(changeViewMode(mode)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
