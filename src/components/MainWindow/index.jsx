@@ -5,6 +5,7 @@ import MovieItem from './MovieItem';
 import MovieItemSmall from './MovieItemSmall';
 import PaginationHandler from './PaginationHandler';
 import './main-window.scss';
+import './main-window-tablet.scss';
 
 const MainWindow = (props) => {
   const { totalPages, movies, minimizedView } = props;

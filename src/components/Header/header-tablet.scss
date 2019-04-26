@@ -2,9 +2,11 @@
 
 @include tablet {
   .header{
-    padding: 0 20px;
+    padding: 0 15px;
+
+    &__display-mode{
+      width: 100px;
+      margin-left: 4px;
+    }
   }
-
-
-
 }

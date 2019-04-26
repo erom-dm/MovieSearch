@@ -29,7 +29,12 @@
   }
 
   &__title{
+    font-size: 20px;
     font-weight: 600;
     margin-right: 5px;
+  }
+
+  &__score{
+    font-size: 18px;
   }
 }

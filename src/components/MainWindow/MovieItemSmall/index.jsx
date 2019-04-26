@@ -1,7 +1,8 @@
 import React from 'react';
-import './movie-item-small.scss';
 import PropTypes from 'prop-types';
 import noImage from '../../../img/missing-image.png';
+import './movie-item-small.scss';
+import './movie-item-small-tablet.scss';
 
 const MovieItem = ({ movie }) => {
   const {
@@ -12,16 +13,18 @@ const MovieItem = ({ movie }) => {
   const posterURL = posterPath === null ? noImage : `https://image.tmdb.org/t/p/w500${posterPath}`;
   const editedOverview = overview === '' ? '< Description is missing >' : `${overview.slice(0, 130)}...`;
   return (
-    <li className="movie-list__movie-item-small">
-      <img className="movie-list__poster" src={posterURL} alt=" " />
-      <div className="movie-list__text-container">
-        <div className="movie-list__title-container">
-          <div className="movie-list__title">
+    <li className="movie-list-s__movie-item-small">
+      <div className="movie-list-s__img-container">
+        <img className="movie-list-s__poster" src={posterURL} alt=" " />
+      </div>
+      <div className="movie-list-s__text-container">
+        <div className="movie-list-s__title-container">
+          <div className="movie-list-s__title">
             {`${title}`}
-            <span className="movie-list__info">{`Rating: ${rating} | Language: ${language.toUpperCase()} | Year: ${year}`}</span>
+            <span className="movie-list-s__info">{`Rating: ${rating} | Language: ${language.toUpperCase()} | Year: ${year}`}</span>
           </div>
         </div>
-        <div className="movie-list__description">{editedOverview}</div>
+        <div className="movie-list-s__description">{editedOverview}</div>
       </div>
     </li>
   );

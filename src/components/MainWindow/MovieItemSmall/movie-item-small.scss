@@ -1,6 +1,11 @@
 @import '../../../style/variables';
 
-.movie-list{
+.movie-list-s{
+
+  &__img-container{
+    display: flex;
+    align-items: center;
+  }
 
   &__poster{
     margin-right: 10px;
@@ -31,6 +36,7 @@
   }
 
   &__title{
+    font-size: 18px;
     font-weight: 600;
   }
 

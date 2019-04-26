@@ -1,0 +1,7 @@
+@import '../../style/variables';
+
+@include tablet{
+  .main {
+    padding: 95px 15px 30px;
+  }
+}
