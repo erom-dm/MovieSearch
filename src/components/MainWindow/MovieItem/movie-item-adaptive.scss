@@ -1,0 +1,15 @@
+@import '../../../style/variables';
+
+@include custom-media(0px, 560px){
+  .movie-list{
+
+    &__movie-item{
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__poster{
+      margin-bottom: 5px;
+    }
+  }
+}

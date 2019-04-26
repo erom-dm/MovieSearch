@@ -38,13 +38,17 @@
       }
     }
 
-    &__display-mode{
-      display: none;
-    }
-
     &__sort-order-switch{
       flex-shrink: 0;
       margin: auto;
+    }
+  }
+}
+
+@include custom-media(0px, 570px){
+  .header{
+    &__logo{
+      display: none;
     }
   }
 }

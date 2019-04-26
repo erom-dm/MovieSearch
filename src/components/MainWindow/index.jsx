@@ -22,7 +22,7 @@ const MainWindow = (props) => {
             totalPages > 1 && movies.length > 0
               ? <PaginationHandler totalPages={totalPages} />
               : null
-        }
+          }
       </div>
     </Fragment>
   );

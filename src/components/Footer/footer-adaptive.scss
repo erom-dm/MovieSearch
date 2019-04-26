@@ -1,0 +1,7 @@
+@import '../../style/variables';
+
+@include mobile{
+  .footer{
+    font-size: 12px;
+  }
+}

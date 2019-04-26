@@ -1,7 +1,8 @@
 import React from 'react';
-import './movie-item.scss';
 import PropTypes from 'prop-types';
 import noImage from '../../../img/missing-image.png';
+import './movie-item.scss';
+import './movie-item-adaptive.scss';
 
 const MovieItem = ({ movie }) => {
   const {
