@@ -4,7 +4,7 @@ const queryConst = 'https://api.themoviedb.org/3';
 export const discover = (value, sortBy, searchBy, order) => {
   let sort;
   let search;
-  // todo search by year
+
   switch (sortBy) {
     case 'Popularity':
       sort = `popularity.${order}`;
@@ -83,11 +83,11 @@ api_key=${apiKey}
 &include_adult=false`;
 };
 
-export const searchMovie = (movie) => {
+export const searchGenres = () => `${queryConst}/genre/movie/list?api_key=${apiKey}&language=en-US`;
+
+/* export const searchMovie = (movie) => {
   const movieEdited = movie.replace(' ', '%20');
 
   return `${queryConst}/search/movie?api_key=${apiKey}&
 language=en-US&query=${movieEdited}&page=1&include_adult=false`;
-};
-
-export const searchGenres = () => `${queryConst}/genre/movie/list?api_key=${apiKey}&language=en-US`;
+}; */

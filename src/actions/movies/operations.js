@@ -4,8 +4,6 @@ import { discoverMovie } from './actions';
 import { setTotalPages, saveLastQuery, setActivePage } from '../search/actions';
 import { discover, searchPerson, searchGenres } from '../../util/queries';
 
-// todo: sorting redundant?
-
 const sortMovies = (data, sortBy, order) => {
   const sortOrder = order;
   let iteratee;
