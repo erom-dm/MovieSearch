@@ -53,8 +53,9 @@ class Header extends Component {
       <div className="header">
         <img className="header__logo" src={logo} alt=" " />
         <div className="header__search-container">
-          <Dropdown width={width} menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />
+          { width >= 720 && <Dropdown width={width} menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />}
           <SearchBar query={this.searchQuery} />
+          { width < 720 && <Dropdown width={width} menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />}
           <Dropdown width={width} menuType="Sort" items={['Rating', 'Popularity', 'Year']} />
           <button className={`header__sort-order-switch ${sortMode}`} type="button" onClick={this.handleSortOrderSwitch} />
         </div>

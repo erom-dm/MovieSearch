@@ -16,12 +16,8 @@
     padding: 0 5px;
 
     &__display-mode{
-      width: 100px;
+      flex-basis: 100px;
       margin-left: 4px;
-    }
-
-    &__sort-order-swith{
-      flex-grow: 1;
     }
   }
 }
@@ -29,8 +25,26 @@
 @include custom-media(0px, 570px){
   .header{
 
-    &__logo{
+    &__search-container{
+      justify-content: start;
+      margin: 0 auto;
+
+      form{
+        flex-shrink: 3;
+      }
+
+      .dropdown{
+        flex-shrink: 0;
+      }
+    }
+
+    &__display-mode{
       display: none;
+    }
+
+    &__sort-order-switch{
+      flex-shrink: 0;
+      margin: auto;
     }
   }
 }
