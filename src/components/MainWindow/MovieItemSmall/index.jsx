@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import noImage from '../../../img/missing-image.png';
 import './movie-item-small.scss';
-import './movie-item-small-tablet.scss';
+import './movie-item-small-adaptive.scss';
 
 const MovieItem = ({ movie }) => {
   const {

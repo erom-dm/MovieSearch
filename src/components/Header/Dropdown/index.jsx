@@ -3,22 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeSearchType, changeSortType } from '../../../actions/search/actions';
 import './dropdown.scss';
-import './dropdown-tablet.scss';
+import './dropdown-adaptive.scss';
 
 class Dropdown extends Component {
   state = {
     displayMenu: false,
-    width: 0,
   };
-
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
 
   handleListItemClick = (e) => {
     const { action, payloadKey } = this.handleMenuType();
@@ -63,17 +53,22 @@ class Dropdown extends Component {
     });
   };
 
-  updateWindowDimensions = () => {
-    this.setState({ width: window.innerWidth });
+  adjustDropDownText = (text, selectedItem) => {
+    const { width } = this.props;
+    if (width >= 720 && width < 1200) {
+      return text;
+    }
+    if (width < 720) {
+      return null;
+    }
+    return `${text} By: ${selectedItem}`;
   };
 
   render() {
     const { items } = this.props;
-    const { displayMenu, width } = this.state;
+    const { displayMenu } = this.state;
     const { actionLabel, selectedItem } = this.handleMenuType();
-    const dropDownText = width < 1200
-      ? `${actionLabel}`
-      : `${actionLabel} By: ${selectedItem}`;
+    const dropDownText = this.adjustDropDownText(actionLabel, selectedItem);
     const listItems = items.map((item, index) => (
       <li className="dropdown__item" key={index}>
         <button type="button" value={item} onClick={this.handleListItemClick}>{item}</button>
@@ -102,6 +97,7 @@ Dropdown.propTypes = {
   searchType: PropTypes.string.isRequired,
   sortType: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  width: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -8,3 +8,12 @@
     }
   }
 }
+
+@include mobile{
+  .movie-list-s{
+
+    &__description{
+      font-size: 14px;
+    }
+  }
+}

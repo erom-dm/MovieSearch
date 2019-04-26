@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './search-bar.scss';
+import './search-bar-adaptive.scss';
 
 class SearchBar extends Component {
   state = {

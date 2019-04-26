@@ -29,8 +29,8 @@ $large-desktop: 1350px;
   }
 }
 
-@mixin desktop {
-  @media (min-width: #{$desktop-width}) and (max-width: #{$large-desktop - 1px}) {
+@mixin custom-media ($min, $max) {
+  @media (min-width: #{$min}) and (max-width: #{$max - 1px}) {
     @content;
   }
 }

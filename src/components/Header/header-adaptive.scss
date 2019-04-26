@@ -1,0 +1,36 @@
+@import '../../style/variables';
+
+@include tablet {
+  .header{
+    padding: 0 15px;
+
+    &__display-mode{
+      width: 100px;
+      margin-left: 4px;
+    }
+  }
+}
+
+@include mobile {
+  .header{
+    padding: 0 5px;
+
+    &__display-mode{
+      width: 100px;
+      margin-left: 4px;
+    }
+
+    &__sort-order-swith{
+      flex-grow: 1;
+    }
+  }
+}
+
+@include custom-media(0px, 570px){
+  .header{
+
+    &__logo{
+      display: none;
+    }
+  }
+}

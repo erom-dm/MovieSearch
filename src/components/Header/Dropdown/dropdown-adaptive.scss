@@ -5,8 +5,17 @@
     margin: 0 5px;
 
     &__button{
-      content: "";
       width: 100px;
+    }
+  }
+}
+
+@include mobile{
+  .dropdown{
+    margin: 0 5px;
+
+    &__button{
+      width: 36px;
     }
   }
 }

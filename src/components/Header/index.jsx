@@ -7,9 +7,26 @@ import searchMovies from '../../actions/movies/operations';
 import { changeSortMode, changeViewMode } from '../../actions/search/actions';
 import logo from '../../img/logo.jpg';
 import './header.scss';
-import './header-tablet.scss';
+import './header-adaptive.scss';
 
 class Header extends Component {
+  state = {
+    width: 0,
+  };
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({ width: window.innerWidth });
+  };
+
   searchQuery = (value) => {
     const {
       discover, sortBy, searchBy, sortMode,
@@ -30,14 +47,15 @@ class Header extends Component {
   };
 
   render() {
+    const { width } = this.state;
     const { sortMode } = this.props;
     return (
       <div className="header">
         <img className="header__logo" src={logo} alt=" " />
         <div className="header__search-container">
-          <Dropdown menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />
+          <Dropdown width={width} menuType="Search" items={['Title', 'Year', 'Genre', 'Actor']} />
           <SearchBar query={this.searchQuery} />
-          <Dropdown menuType="Sort" items={['Rating', 'Popularity', 'Year']} />
+          <Dropdown width={width} menuType="Sort" items={['Rating', 'Popularity', 'Year']} />
           <button className={`header__sort-order-switch ${sortMode}`} type="button" onClick={this.handleSortOrderSwitch} />
         </div>
         <div className="header__display-mode">

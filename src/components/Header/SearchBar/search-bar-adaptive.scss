@@ -1,0 +1,15 @@
+@import '../../../style/variables';
+
+@include custom-media(0px, 570px){
+  .search-bar{
+
+    &__input{
+      border: 3px solid $dark-grey;
+      border-radius: 5px;
+    }
+
+    &__submit-btn{
+      display: none;
+    }
+  }
+}
