@@ -14,7 +14,9 @@ const MovieItem = ({ movie }) => {
   const editedOverview = overview === '' ? '< Description is missing >' : overview;
   return (
     <li className="movie-list__movie-item">
-      <img className="movie-list__poster" src={posterURL} alt=" " />
+      <div className="movie-list__img-container">
+        <img className="movie-list__poster" src={posterURL} alt=" " />
+      </div>
       <div className="movie-list__text-container">
         <div className="movie-list__title-container">
           <div className="movie-list__title">{`${title}`}</div>
